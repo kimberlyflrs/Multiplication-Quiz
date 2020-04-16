@@ -33,20 +33,60 @@ function Question(){
     var answer = value1*value2;
 
     console.log(""+value1+" "+value2);
-    console.log(Math.floor(Math.random()*(answer-value1)));
-    console.log(Math.floor(Math.random()*(answer-value2)));
+    //Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+    var one = Math.floor(Math.random()*(10)+1);
+
+    var val1 = Math.floor(Math.random()*((answer+one)-answer+1))+(answer+1);
+    var val2 = Math.floor(Math.random()*((answer+one)-answer+1))+(answer+1);
+
+    while (val1 == val2){
+        val1 = Math.floor(Math.random()*((answer+one)-answer+1))+(answer+1);
+
+    }
+
+    console.log("one: "+ val1);
+    console.log("Two: "+ val2);
     //sets the boxes to the values
     document.getElementById("value1").innerHTML = value1;
     document.getElementById("value2").innerHTML = value2;
 
     //or we can have buttons with 3 options
     //1. answer 2. 3.
+    //assign to random buttons
+    assignBtn([answer, val1, val2]);
 }
 
-function check(value1, value2, answer){
+function assignBtn(arr){
+    //randomly assign an answer to a button
+    var answers = shuffle(arr);
+
+    document.getElementById("answer1").innerHTML = answers[0];
+    document.getElementById("answer2").innerHTML = answers[1];
+    document.getElementById("answer3").innerHTML = answers[2];
+
+}
+
+function shuffle(arr){
+    //takes an array
+    var j, x, i;
+    for (i = arr.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = arr[i];
+        arr[i] = arr[j];
+        arr[j] = x;
+    }
+    return arr;
+}
+
+function check(){
     //checks if answer is correct
+    var answer = document.getElementById("value1").innerHTML * document.getElementById("value2").innerHTML;
     if(answer == (value1*value2)){
         return true;
     }
     return false;
+}
+
+function timer(){
+   // setInterval()
 }
