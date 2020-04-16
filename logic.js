@@ -54,6 +54,10 @@ function Question(){
     //1. answer 2. 3.
     //assign to random buttons
     assignBtn([answer, val1, val2]);
+    document.getElementById("answer1").onclick = function(){check("answer1")};
+    document.getElementById("answer2").onclick = function(){check("answer2")};
+    document.getElementById("answer3").onclick = function(){check("answer3")};
+
 }
 
 function assignBtn(arr){
@@ -78,13 +82,17 @@ function shuffle(arr){
     return arr;
 }
 
-function check(){
+function check(id){
     //checks if answer is correct
     var answer = document.getElementById("value1").innerHTML * document.getElementById("value2").innerHTML;
-    if(answer == (value1*value2)){
-        return true;
+    var c = document.getElementById(id).innerHTML;
+    if(c == (answer)){
+        console.log('true');
+        //return true;
+        Question();
     }
-    return false;
+    console.log('false');
+    //return false;
 }
 
 function timer(){
