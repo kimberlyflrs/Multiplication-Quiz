@@ -16,7 +16,7 @@ bonus: countdown feature (do the most you can in a minute)
 possible feature: user can pick which times table they want to practice
 */
 var question = 1;
-var score = 0;
+var correct = 0;
 var time = 0;
 
 
@@ -24,6 +24,7 @@ function StartQuiz(){
     //starts the quiz
     console.log('starting quiz');
     //show question
+    document.getElementById("question").style.visibility = "visible";
     document.getElementById("answers").style.visibility = "visible";
     document.getElementById("start").style.visibility = "hidden";
     Question();
@@ -93,12 +94,76 @@ function check(id){
     if(c == (answer)){
         console.log('true');
         //return true;
+        //correct +1
+        correct += 1;
+        var s = "Correct: "+correct;
+        document.getElementById("gameplay").innerHTML = s;
+        //next question
         Question();
     }
     console.log('false');
     //return false;
 }
 
-function timer(){
-   // setInterval()
+function playAgain(){
+    //resets the game, asks which gameplay they want
+    question = 1;
+    score = 0;
+    addGameplay();
+}
+
+function timeGameplay(){
+   // setInterval() #gameplay
+}
+
+function randomGameplay(){
+    //ten random questions
+    document.getElementById("gameplay").innerHTML = "Correct: 0";
+    document.getElementById("gameplay").style.visibility="visible";
+    removeGameplay();
+    document.getElementById("question").style.visibility="visible";
+    document.getElementById("answers").style.visibility="visible";
+    Question();
+}
+
+function removeGameplay(){
+    //removes the gameplay option elements
+    var n = document.getElementById("gameoption");
+
+    while (n.hasChildNodes()){
+        n.removeChild(n.firstChild);
+    }
+}
+
+function addGameplay(){
+    //adds the gameplay options
+    var n = document.getElementById("gameoption");
+
+    var header = document.createElement("h4");
+    var message = document.createTextNode = "Choose a gameplay: ";
+    header.appendChild(message);
+
+    var timeoption = document.createElement("button");
+    timeoption.onclick = timeGameplay();
+    timeoption.className= "btn btn-primary timebtn";
+    var tHeader = document.createElement('h6');
+    var tTitle= document.createTextNode('Time');
+    var tExplanation = document.createElement('p');
+    var tMessage= document.createTextNode('Answer as many as you can in a minute');
+    tHeader.appendChild(tTitle);
+    tExplanation.appendChild(tMessage);
+    timeoption.appendChild(tHeader);
+    timeoption.appendChild(tExplanation);
+
+    var randomoption = document.createElement("button");
+    randomoption.onclick = randomGameplay();
+    randomoption.className="btn btn-primary randombtn";
+    var rHeader = document.createElement('h6');
+    var rTitle= document.createTextNode('Random');
+    var rExplanation = document.createElement('p');
+    var rMessage= document.createTextNode('10 random multiplication problems');
+    rHeader.appendChild(rTitle);
+    rExplanation.appendChild(rMessage);
+    randomoption.appendChild(rHeader);
+    randomoption.appendChild(rExplanation);
 }

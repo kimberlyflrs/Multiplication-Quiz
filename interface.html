@@ -14,10 +14,20 @@
     </div>
         <div class="row">
         <div class= "col-lg-12 col-md-12 col-sm-12 col-xs-12" id="stats">
-            <div id="score" style=display:inline-block>Score: </div>
-            <div id="time" style=display:inline-block>Time: </div>
+            <div id="gameplay" style=display:inline-block>Question: </div>
         </div>
-    </div>
+        </div>
+        <div class="row">
+            <div class= "col-lg-12 col-md-12 col-sm-12 col-xs-12" id="gameoption">
+                <h4>Choose a gameplay:</h4>
+                <button  class="btn btn-primary timebtn" onclick="timeGameplay()"><h6>Time</h6>
+                <p>Answer as many as you can in a minute</p>
+                </button>
+                <button  class="btn btn-primary randombtn" onclick="randomGameplay()"><h6>Random</h6>
+                <p>10 random multiplication problems</p>
+                </button>
+            </div>
+            </div>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"id="question">
             <div class="card">
@@ -32,7 +42,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12" id="start">
-            <button  class="btn btn-primary" onclick="StartQuiz()">Start</button>
+            <button  class="btn btn-primary startbtn" onclick="StartQuiz()">Start</button>
         </div>
     </div>
     <div class="row">

@@ -1,15 +1,16 @@
-h1, #stats, #question, #start, #answers{
+h1, #stats, #question, #start, #answers,#gameoption{
     text-align: center;
 }
-#answers{
+#answers, #gameplay, #question, #start{
     visibility: hidden;
 }
+
 
 .row{
     padding-bottom: 20px;
 }
 
-.answerbtn{
+.answerbtn, .startbtn, .timebtn, .randombtn{
     padding-right: 40px;
     padding-left: 40px;
     margin-right: 20px;
