@@ -1,0 +1,17 @@
+h1, #stats, #question, #start, #answers{
+    text-align: center;
+}
+#answers{
+    visibility: hidden;
+}
+
+.row{
+    padding-bottom: 20px;
+}
+
+.answerbtn{
+    padding-right: 40px;
+    padding-left: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
+}

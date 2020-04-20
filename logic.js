@@ -2,13 +2,10 @@
 //What the quiz will do 
 /*
 multiplication from 1-12 tables
-user enters the answers
----show the two numbers, input the result
-*shuffle the two numbers range from 0-12, save the answer
 *show a score
 *casual setting is 10 questions
 *show if correct or wrong
-*display next question
+*display next question DONE
 *show time it took to go through all of it
 *at the end show
 ----time it took, number of correct answers, if passed or not 
@@ -18,10 +15,17 @@ bonus: countdown feature (do the most you can in a minute)
         ---display the time
 possible feature: user can pick which times table they want to practice
 */
+var question = 1;
+var score = 0;
+var time = 0;
+
+
 function StartQuiz(){
     //starts the quiz
     console.log('starting quiz');
     //show question
+    document.getElementById("answers").style.visibility = "visible";
+    document.getElementById("start").style.visibility = "hidden";
     Question();
 }
 
