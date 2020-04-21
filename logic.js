@@ -3,10 +3,10 @@
 /*
 multiplication from 1-12 tables
 *show a score
-*casual setting is 10 questions
+*casual setting is 10 questions DONE
 *show if correct or wrong
 *display next question DONE
-*show time it took to go through all of it
+*show time it took to go through all of it DONE 1/2
 *at the end show
 ----time it took, number of correct answers, if passed or not 
 
@@ -62,7 +62,6 @@ function Question(){
     document.getElementById("answer1").onclick = function(){check("answer1")};
     document.getElementById("answer2").onclick = function(){check("answer2")};
     document.getElementById("answer3").onclick = function(){check("answer3")};
-
 }
 
 function assignBtn(arr){
@@ -92,17 +91,39 @@ function check(id){
     var answer = document.getElementById("value1").innerHTML * document.getElementById("value2").innerHTML;
     var c = document.getElementById(id).innerHTML;
     if(c == (answer)){
-        console.log('true');
         //return true;
         //correct +1
         correct += 1;
         var s = "Correct: "+correct;
         document.getElementById("gameplay").innerHTML = s;
         //next question
-        Question();
+        question+=1;
+        console.log(question);
+        if (isItOver('random')){
+            console.log('done game');
+        }
+        else{
+            Question();
+        }
     }
-    console.log('false');
     //return false;
+}
+
+function isItOver(gameplay){
+    //takes in a gameplay: random or timed
+    if (gameplay=="random"){
+        if(question>10){
+            console.log('over');
+            return true;
+        }
+    }
+    if(gameplay=="timed"){
+        if(time==0){
+            console.log('time done');
+            return true;
+        }
+    }
+    return false;
 }
 
 function playAgain(){
@@ -114,6 +135,19 @@ function playAgain(){
 
 function timeGameplay(){
    // setInterval() #gameplay
+   
+}
+
+
+function showTimer(gameplay){
+    //keeps count
+    const timer = setInterval(() => {
+        document.getElementById("timepassed").innerHTML = time;
+        time += 1;
+        if (question>3 && gameplay=='random'){
+            clearInterval(timer);
+        }
+      }, 1000);
 }
 
 function randomGameplay(){
@@ -124,6 +158,7 @@ function randomGameplay(){
     document.getElementById("question").style.visibility="visible";
     document.getElementById("answers").style.visibility="visible";
     Question();
+    showTimer('random');
 }
 
 function removeGameplay(){
