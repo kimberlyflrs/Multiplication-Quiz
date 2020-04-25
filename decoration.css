@@ -1,7 +1,7 @@
-h1, #stats, #question, #start, #answers,#gameoption{
+h1, #stats, #question, #start, #answers,#gameoption, #finalStats, #playAgain, #result, #nextBtn{
     text-align: center;
 }
-#answers, #gameplay, #question, #start{
+#answers, #gameplay, #question, #start, #next, #stats{
     visibility: hidden;
 }
 
@@ -15,4 +15,17 @@ h1, #stats, #question, #start, #answers,#gameoption{
     padding-left: 40px;
     margin-right: 20px;
     margin-left: 20px;
+}
+
+.red{
+    animation: wrong 2s 1;
+}
+
+@keyframes wrong{
+    0%{
+        background-color:blue;
+    }
+    100%{
+        background-color: red;
+    }
 }

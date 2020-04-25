@@ -12,13 +12,30 @@
             <h1>Multiplication Quiz App</h1>
         </div>
     </div>
+    <div class="row">
+        <div class= "col-lg-12 col-md-12 col-sm-12 col-xs-12" id="game-over">
+        </div>
+        </div>
         <div class="row">
         <div class= "col-lg-12 col-md-12 col-sm-12 col-xs-12" id="stats">
-            <div id="gameplay" style=display:inline-block>Question: </div>
+            <div id="correct" style=display:inline-block>Correct: </div>
             <div id="time" style=display:inline-block>Time: </div>
             <div id="timepassed" style=display:inline-block>0</div>
         </div>
         </div>
+
+        <div class="row">
+            <div class= "col-lg-12 col-md-12 col-sm-12 col-xs-12" id="finalStats">
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class= "col-lg-12 col-md-12 col-sm-12 col-xs-12" id="playAgain">
+                
+            </div>
+        </div>
+
         <div class="row">
             <div class= "col-lg-12 col-md-12 col-sm-12 col-xs-12" id="gameoption">
                 <h4>Choose a gameplay:</h4>
@@ -38,8 +55,14 @@
                     <h3 style=display:inline-block> X </h3>
                     <h3 id="value2" style=display:inline-block>??</h3>
                     <h3 style=display:inline-block> = </h3>
+                    <h3 style=display:inline-block id="answer"> </h3>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"id="isItRight">
+            <h3 id="result"></h3>
         </div>
     </div>
     <div class="row">
@@ -52,6 +75,11 @@
             <button class="btn btn-primary answerbtn" id="answer1">answer 1</button>
             <button class="btn btn-primary answerbtn" id="answer2">answer 2</button>
             <button class="btn btn-primary answerbtn" id="answer3">answer 3</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="next">
+            <button class="btn btn-primary answerbtn" id="nextBtn" onclick="NextBtn()">Next</button>
         </div>
     </div>
     </div>
