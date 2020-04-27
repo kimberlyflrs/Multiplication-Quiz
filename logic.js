@@ -98,7 +98,7 @@ function check(id){
         wrongAnswer(id);
     }
     question++;
-    if (isItOver('random')){
+    if (isItOver()){
         console.log('done game');
         showStats();
     }
@@ -120,7 +120,7 @@ function wrongAnswer(id){
     document.getElementById("result").innerHTML="Wrong";
 }
 
-function isItOver(gameplay){
+function isItOver(){
     //takes in a gameplay: random or timed
     if (gameplay=="random"){
         if(question>3){
@@ -174,11 +174,6 @@ function playAgain(){
     addGameplay();
 }
 
-function timeGameplay(){
-   // setInterval() #gameplay
-   
-}
-
 function NextBtn(){
     //displays next button
     document.getElementById("answer1").className = "btn btn-primary answerbtn";
@@ -189,20 +184,33 @@ function NextBtn(){
     document.getElementById("next").style.visibility = "hidden";
 }
 
-function showTimer(gameplay){
+function randomTimer(){
     //keeps count
     const timer = setInterval(() => {
         document.getElementById("timepassed").innerHTML = time;
         time += 1;
-        if (question>3 && gameplay=='random'){ //CHANGE THIS TO 10
+        if (question>3){ //CHANGE THIS TO 10
             clearInterval(timer);
         }
       }, 1000);
 }
 
-function randomGameplay(){
-    //ten random questions
-    time = 0;
+function timedTimer(){
+    //keeps count
+    const timer = setInterval(() => {
+        document.getElementById("timepassed").innerHTML = time;
+        time --;
+        if (time==0){ //CHANGE THIS TO 10
+            clearInterval(timer);
+        }
+      }, 1000);
+}
+
+function timeGameplay(){
+    // setInterval() #gameplay
+    time =60;
+    correct=0;
+    gameplay='timed';
     document.getElementById("correct").innerHTML = "Correct: 0";
     document.getElementById("timepassed").innerHTML = time;
     document.getElementById("stats").style.visibility="visible";
@@ -213,7 +221,26 @@ function randomGameplay(){
     document.getElementById("answer2").className = "btn btn-primary answerbtn";
     document.getElementById("answer3").className = "btn btn-primary answerbtn";
 
-    showTimer('random');
+    timedTimer();
+    Question();
+ }
+
+function randomGameplay(){
+    //ten random questions
+    time = 0;
+    correct=0;
+    gameplay='random';
+    document.getElementById("correct").innerHTML = "Correct: 0";
+    document.getElementById("timepassed").innerHTML = time;
+    document.getElementById("stats").style.visibility="visible";
+    removeSection("gameoption");
+    document.getElementById("question").style.visibility="visible";
+    document.getElementById("answers").style.visibility="visible";
+    document.getElementById("answer1").className = "btn btn-primary answerbtn";
+    document.getElementById("answer2").className = "btn btn-primary answerbtn";
+    document.getElementById("answer3").className = "btn btn-primary answerbtn";
+
+    randomTimer();
     Question();
 
 }
@@ -236,7 +263,7 @@ function addGameplay(){
     //header.appendChild(message);
 
     var timeoption = document.createElement("button");
-    timeoption.onclick = timeGameplay();
+    timeoption.onclick = function(){timeGameplay()};
     timeoption.className= "btn btn-primary timebtn";
     var tHeader = document.createElement('h6');
     var tTitle= document.createTextNode('Time');
