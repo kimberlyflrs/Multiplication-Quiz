@@ -1,4 +1,4 @@
-h1, #stats, #question, #start, #answers,#gameoption, #finalStats, #playAgain, #result, #nextBtn{
+h1, #stats, #question, #start, #answers,#gameoption, #finalStats, #playAgain, #result, #next{
     text-align: center;
 }
 #answers, #gameplay, #question, #start, #next, #stats{
@@ -15,17 +15,4 @@ h1, #stats, #question, #start, #answers,#gameoption, #finalStats, #playAgain, #r
     padding-left: 40px;
     margin-right: 20px;
     margin-left: 20px;
-}
-
-.red{
-    animation: wrong 2s 1;
-}
-
-@keyframes wrong{
-    0%{
-        background-color:blue;
-    }
-    100%{
-        background-color: red;
-    }
 }

@@ -1,33 +1,10 @@
 //Quiz logic
-//What the quiz will do 
-/*
-*casual setting is 10 questions DONE
-*show if correct or wrong DONE
-*display next question DONE
-*show time it took to go through all of it DONE 1/2
-*at the end show
-----time it took, number of correct answers, if passed or not DONE
 
-
-bonus: countdown feature (do the most you can in a minute)
-        ---display the time
-possible feature: user can pick which times table they want to practice
-*/
 var question = 1;
 var correct = 0;
 var time = 0;
-var shown =0;
 var gameplay = "";
 
-/*function StartQuiz(){
-    //starts the quiz
-    console.log('starting quiz');
-    //show question
-    document.getElementById("question").style.visibility = "visible";
-    document.getElementById("answers").style.visibility = "visible";
-    document.getElementById("start").style.visibility = "hidden";
-    Question();
-}*/
 
 function Question(){
     //picks 2 random values on range
@@ -35,7 +12,6 @@ function Question(){
     var value2 = Math.floor(Math.random()*13);
     var answer = value1*value2;
 
-    console.log(""+value1+" "+value2);
     var one = Math.floor(Math.random()*(10)+1);
 
     var val1 = Math.floor(Math.random()*((answer+one)-answer+1))+(answer+1);
@@ -45,9 +21,6 @@ function Question(){
         val1 = Math.floor(Math.random()*((answer+one)-answer+1))+(answer+1);
 
     }
-
-    console.log("one: "+ val1);
-    console.log("Two: "+ val2);
     //sets the boxes to the values
     document.getElementById("value1").innerHTML = value1;
     document.getElementById("value2").innerHTML = value2;
@@ -91,12 +64,15 @@ function check(id){
         var score = "Correct: "+correct;
         document.getElementById("correct").innerHTML = score;
         //next question
-        console.log(question);
         correctAnswer(id);
     }
     else{
         wrongAnswer(id);
     }
+    document.getElementById('answer1').onclick="";
+    document.getElementById('answer2').onclick="";
+    document.getElementById('answer3').onclick="";
+
     question++;
     if (isItOver()){
         console.log('done game');
@@ -108,16 +84,18 @@ function check(id){
 }
 
 function correctAnswer(id){
-    //for 2 seconds
     //show the correct answer
     //highlight the the button you clicked
     document.getElementById(id).className = "btn btn-success answerbtn";
     document.getElementById("result").innerHTML="Correct";
+    document.getElementById("result").style.visibility="visible";
+
 }
 
 function wrongAnswer(id){
     document.getElementById(id).className = "btn btn-danger answerbtn";
     document.getElementById("result").innerHTML="Wrong";
+    document.getElementById("result").style.visibility="visible";
 }
 
 function isItOver(){
@@ -138,16 +116,28 @@ function isItOver(){
 function showStats(){
     //shows time taken, correct questions, and play again button
     //
-
     var n = document.getElementById('finalStats');
     var p = document.getElementById('playAgain');
 
     var score = document.createElement('h3');
-    var s = document.createTextNode('Score: '+ correct + '/10');
+    var s;
+    if (gameplay=="random"){
+        s = document.createTextNode('Score: '+ correct + '/10');
+
+    }
+    else{
+        s = document.createTextNode('Score: '+ correct );
+    }
     score.appendChild(s);
     
     var times = document.createElement('h3');
-    var t = document.createTextNode('Time: '+ time);
+    var t;
+    if (gameplay=="timed"){
+        t = document.createTextNode('Time: 60 seconds');
+    }
+    else{
+        t = document.createTextNode('Time: '+ time+' seconds');
+    }
     times.appendChild(t);
 
     n.appendChild(score);
@@ -165,6 +155,8 @@ function showStats(){
     document.getElementById('isItRight').style.visibility="hidden";
     document.getElementById('answers').style.visibility="hidden";
     document.getElementById('stats').style.visibility="hidden";
+    document.getElementById('result').style.visibility='hidden';
+
 }
 
 function playAgain(){
@@ -179,6 +171,10 @@ function NextBtn(){
     document.getElementById("answer1").className = "btn btn-primary answerbtn";
     document.getElementById("answer2").className = "btn btn-primary answerbtn";
     document.getElementById("answer3").className = "btn btn-primary answerbtn";
+    document.getElementById('answer1').onclick = function(){check('answer1')};
+    document.getElementById('answer2').onclick = function(){check('answer2')};
+    document.getElementById('answer3').onclick = function(){check('answer3')};
+
     document.getElementById("result").innerHTML="";
     Question();
     document.getElementById("next").style.visibility = "hidden";
@@ -189,7 +185,7 @@ function randomTimer(){
     const timer = setInterval(() => {
         document.getElementById("timepassed").innerHTML = time;
         time += 1;
-        if (question>3){ //CHANGE THIS TO 10
+        if (question>10){
             clearInterval(timer);
         }
       }, 1000);
@@ -200,8 +196,9 @@ function timedTimer(){
     const timer = setInterval(() => {
         document.getElementById("timepassed").innerHTML = time;
         time --;
-        if (time==0){ //CHANGE THIS TO 10
+        if (time==0){
             clearInterval(timer);
+            showStats();
         }
       }, 1000);
 }
