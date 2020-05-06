@@ -12,6 +12,15 @@ function Question(){
     var value2 = Math.floor(Math.random()*13);
     var answer = value1*value2;
 
+    //sets the boxes to the values
+    document.getElementById("value1").innerHTML = value1;
+    document.getElementById("value2").innerHTML = value2;
+
+    generateRandomAnswers(answer);
+}
+
+function generateRandomAnswers(answer){
+    //generates random answers similar to answer
     var one = Math.floor(Math.random()*(10)+1);
 
     var val1 = Math.floor(Math.random()*((answer+one)-answer+1))+(answer+1);
@@ -21,9 +30,6 @@ function Question(){
         val1 = Math.floor(Math.random()*((answer+one)-answer+1))+(answer+1);
 
     }
-    //sets the boxes to the values
-    document.getElementById("value1").innerHTML = value1;
-    document.getElementById("value2").innerHTML = value2;
 
     //or we can have buttons with 3 options
     //assign to random buttons
@@ -107,6 +113,11 @@ function isItOver(){
     }
     if(gameplay=="timed"){
         if(time==0){
+            return true;
+        }
+    }
+    if(gameplay=="practice"){
+        if(question>13){
             return true;
         }
     }
@@ -265,12 +276,43 @@ function showPracticeOptions(){
         button.appendChild(b);
         p.appendChild(button);
     }
+    document.getElementById(0).onclick = function(){startMultiplication(0)};
+    document.getElementById(1).onclick = function(){startMultiplication(1)};
+    document.getElementById(2).onclick = function(){startMultiplication(2)};
+    document.getElementById(3).onclick = function(){startMultiplication(3)};
+    document.getElementById(4).onclick = function(){startMultiplication(4)};
+    document.getElementById(5).onclick = function(){startMultiplication(5)};
+    document.getElementById(6).onclick = function(){startMultiplication(6)};
+    document.getElementById(7).onclick = function(){startMultiplication(7)};
+    document.getElementById(8).onclick = function(){startMultiplication(8)};
+    document.getElementById(9).onclick = function(){startMultiplication(9)};
+    document.getElementById(10).onclick = function(){startMultiplication(10)};
+    document.getElementById(11).onclick = function(){startMultiplication(11)};
+    document.getElementById(12).onclick = function(){startMultiplication(12)};
 
 }
 
 function startMultiplication(id){
-    //display question, next button, keeps going in order from 0-12, next button should stop after you reach 12
+    //display question, next button,
     //options below 
+    console.log(id);
+    gameplay = "practice";
+    removeSection("playAgain");
+    practiceQuestion(id, 0);
+    //generate random answers
+    document.getElementById("question").style.visibility = "visible";
+    document.getElementById("answers").style.visibility = "visible";
+    document.getElementById("correct").style.visibility = "visible";
+
+}
+
+function practiceQuestion(id, current){
+    //generates the question
+    document.getElementById("value1").innerHTML=id;
+    document.getElementById("value2").innerHTML=current;
+    var answer = document.getElementById("value2").innerHTML*document.getElementById("value1").innerHTML;
+
+    generateRandomAnswers(answer);
 }
 
 function removeSection(id){
