@@ -5,14 +5,29 @@ h1, #stats, #question, #start, #answers,#gameoption, #finalStats, #playAgain, #r
     visibility: hidden;
 }
 
-
 .row{
     padding-bottom: 20px;
 }
 
-.answerbtn, .startbtn, .timebtn, .randombtn{
-    padding-right: 40px;
-    padding-left: 40px;
-    margin-right: 20px;
-    margin-left: 20px;
+.answerbtn, .startbtn, .timebtn, .randombtn, .practicebtn{
+    padding: 20px 40px;
+    margin: 10px 20px;
 }
+
+body{
+    background-image: url(https://66.media.tumblr.com/010c46067b29b710ce9a508fb4171dfb/tumblr_inline_n1ubnjJXdz1qmvw6b.gif);
+}
+
+h1{
+    margin-top: 15px;
+}
+
+h1, h3, h4, h6, p, #correct, #timepassed, #time, #answer1, #answer2, #answer3, #playagain {
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+}
+
+.question{
+    color: black;
+}
+

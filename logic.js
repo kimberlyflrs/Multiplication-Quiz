@@ -242,6 +242,37 @@ function randomGameplay(){
 
 }
 
+function practiceGameplay(){
+    //user picks times tables from 0-12
+    showPracticeOptions();
+}
+
+function showPracticeOptions(){
+    removeSection("gameoption");
+    console.log('hello');
+    var p = document.getElementById("playAgain");
+
+    var title = document.createElement('h3');
+    var t = document.createTextNode("Pick a multiplication table");
+    title.appendChild(t);
+
+    p.appendChild(title);
+    for(var i=0; i<=12; i++){
+        var button = document.createElement('button');
+        var b = document.createTextNode(i);
+        button.className = "btn btn-primary answerbtn";
+        button.id = i;
+        button.appendChild(b);
+        p.appendChild(button);
+    }
+
+}
+
+function startMultiplication(id){
+    //display question, next button, keeps going in order from 0-12, next button should stop after you reach 12
+    //options below 
+}
+
 function removeSection(id){
     //removes the gameplay option elements
     var n = document.getElementById(id);
