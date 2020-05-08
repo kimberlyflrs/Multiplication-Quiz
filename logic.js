@@ -65,6 +65,7 @@ function check(id){
     //checks if answer is correct
     var answer = document.getElementById("value1").innerHTML * document.getElementById("value2").innerHTML;
     var c = document.getElementById(id).innerHTML;
+    console.log('checking');
     if(c == (answer)){
         correct += 1;
         var score = "Correct: "+correct;
@@ -107,7 +108,7 @@ function wrongAnswer(id){
 function isItOver(){
     //takes in a gameplay: random or timed
     if (gameplay=="random"){
-        if(question>3){
+        if(question>10){
             return true;
         }
     }
@@ -117,7 +118,7 @@ function isItOver(){
         }
     }
     if(gameplay=="practice"){
-        if(question>13){
+        if(question>12){
             return true;
         }
     }
@@ -187,7 +188,14 @@ function NextBtn(){
     document.getElementById('answer3').onclick = function(){check('answer3')};
 
     document.getElementById("result").innerHTML="";
-    Question();
+    if(gameplay=="practice"){
+        var table = document.getElementById("value1").innerHTML;
+        practiceQuestion(table, question);
+        console.log("question: "+ question);
+    }
+    else{
+        Question();
+    }
     document.getElementById("next").style.visibility = "hidden";
 }
 
@@ -195,10 +203,11 @@ function randomTimer(){
     //keeps count
     const timer = setInterval(() => {
         document.getElementById("timepassed").innerHTML = time;
-        time += 1;
+        time ++;
         if (question>10){
             clearInterval(timer);
         }
+       // time += 1;
       }, 1000);
 }
 
@@ -214,10 +223,23 @@ function timedTimer(){
       }, 1000);
 }
 
+function practiceTimer(){
+    //keeps count
+    const timer = setInterval(() => {
+        document.getElementById("timepassed").innerHTML = time;
+        time ++;
+        if (question>12){
+            clearInterval(timer);
+        }
+        console.log(time);
+      }, 1000);
+}
+
 function timeGameplay(){
     // setInterval() #gameplay
     time =60;
     correct=0;
+    question=1;
     gameplay='timed';
     document.getElementById("correct").innerHTML = "Correct: 0";
     document.getElementById("timepassed").innerHTML = time;
@@ -229,6 +251,8 @@ function timeGameplay(){
     document.getElementById("answer2").className = "btn btn-primary answerbtn";
     document.getElementById("answer3").className = "btn btn-primary answerbtn";
 
+    document.getElementById('nextBtn').onclick = function(){NextBtn()};
+
     timedTimer();
     Question();
  }
@@ -237,6 +261,7 @@ function randomGameplay(){
     //ten random questions
     time = 0;
     correct=0;
+    question=1;
     gameplay='random';
     document.getElementById("correct").innerHTML = "Correct: 0";
     document.getElementById("timepassed").innerHTML = time;
@@ -248,6 +273,8 @@ function randomGameplay(){
     document.getElementById("answer2").className = "btn btn-primary answerbtn";
     document.getElementById("answer3").className = "btn btn-primary answerbtn";
 
+
+    document.getElementById('nextBtn').onclick = function(){NextBtn()};
     randomTimer();
     Question();
 
@@ -256,6 +283,7 @@ function randomGameplay(){
 function practiceGameplay(){
     //user picks times tables from 0-12
     showPracticeOptions();
+    document.getElementById('nextBtn').onclick = function(){NextBtn()};
 }
 
 function showPracticeOptions(){
@@ -296,13 +324,23 @@ function startMultiplication(id){
     //display question, next button,
     //options below 
     console.log(id);
+    question =0;
+    time=0;
+    correct=0;
     gameplay = "practice";
     removeSection("playAgain");
-    practiceQuestion(id, 0);
-    //generate random answers
+    practiceQuestion(id, question);
+    practiceTimer();
+
     document.getElementById("question").style.visibility = "visible";
     document.getElementById("answers").style.visibility = "visible";
-    document.getElementById("correct").style.visibility = "visible";
+    document.getElementById("stats").style.visibility="visible";
+    document.getElementById("correct").innerHTML = "Correct: 0";
+    document.getElementById("timepassed").innerHTML = time;
+    document.getElementById("answer1").className = "btn btn-primary answerbtn";
+    document.getElementById("answer2").className = "btn btn-primary answerbtn";
+    document.getElementById("answer3").className = "btn btn-primary answerbtn";
+
 
 }
 
@@ -356,9 +394,23 @@ function addGameplay(){
     randomoption.appendChild(rHeader);
     randomoption.appendChild(rExplanation);
 
+    var practiceoption = document.createElement("button");
+    practiceoption.onclick = function(){practiceGameplay()};
+    practiceoption.className="btn btn-primary practicebtn";
+    var pHeader = document.createElement('h6');
+    var pTitle= document.createTextNode('Practice');
+    var pExplanation = document.createElement('p');
+    var pMessage= document.createTextNode('Practice a specific time table');
+    pHeader.appendChild(pTitle);
+    pExplanation.appendChild(pMessage);
+    practiceoption.appendChild(pHeader);
+    practiceoption.appendChild(pExplanation);
+
     n.appendChild(header);
     n.appendChild(timeoption);
     n.appendChild(randomoption);
+    n.appendChild(practiceoption);
+
 
     removeSection("finalStats");
     removeSection("playAgain");
