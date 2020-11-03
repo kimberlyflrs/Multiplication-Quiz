@@ -5,11 +5,11 @@ An web-based application that allows users to practice 1-12 multiplication table
 I decided to create this web-based app to help my neighbor practice her multiplication tables in a fun way rather than using flash cards.
 
 ## Features
-- Practice multiplication tables from 0-12.
-- 3 different game modes
-              -Practice Mode | Practice a specific multiplication table
-              -Random Mode | Answer 10 random multiplication questions
-              -Time Mode | Answer as many questions in a minute
+* Practice multiplication tables from 0-12.
+* 3 different game modes
+              **Practice Mode | Practice a specific multiplication table
+              **Random Mode | Answer 10 random multiplication questions
+              **Time Mode | Answer as many questions in a minute
 
 ## Tech/framework used
 - [React JS](https://reactjs.org/)
