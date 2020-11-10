@@ -12,10 +12,10 @@ I decided to create this web-based app to help my neighbor practice her multipli
   * Time Mode | Answer as many questions in a minute
 
 ## Tech/framework used
-- [React JS](https://reactjs.org/)
+- HTML5
+- CSS3
+- JavaScript
 - [Bootstrap](https://react-bootstrap.github.io/)
 
-## Run on own environment
-Use 'npm start' to run it.
 
-Or check out the [project](https://multiplication-pracctice-quiz.herokuapp.com/)
+Check out the [project](https://multiplication-pracctice-quiz.herokuapp.com/)
